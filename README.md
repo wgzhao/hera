@@ -1,11 +1,6 @@
-# 数据平台打造的任务调度系统(HERA-2.3.1)
-
-## 部署
-
-生产环境部署在 `nfbigdata-[81,82,83,84,90,94,95,96]` 的 `/data/apps/hera-2.3` 目录下
+# 数据平台打造的任务调度系统
 
 ## 介绍文章
-
 
 ## 前言
 
@@ -248,10 +243,10 @@ hera:
   maxMemRate: 0.80       #已使用内存占总内存的最大比例,默认0.80。当worker内存使用达到此值时将不会再向此work发任务
   maxCpuLoadPerCore: 1.0   #cpu load per core等于最近1分钟系统的平均cpu负载÷cpu核心数量，默认1.0。当worker平均负载使用达到此值时将不会再向此work发任务
   scanRate: 1000        #任务队列扫描频率(毫秒)
-  systemMemUsed: 4000  # 系统占用内存	
+  systemMemUsed: 4000  # 系统占用内存
   perTaskUseMem: 500   # 假设每个任务使用内存500M
-  requestTimeout: 10000 # 异步请求超时时间	
-  channelTimeout: 1000 # netty请求超时时间		
+  requestTimeout: 10000 # 异步请求超时时间
+  channelTimeout: 1000 # netty请求超时时间
 
   heartBeat: 3           # 心跳传递时间频率
   downloadDir: /opt/logs/spring-boot
@@ -526,4 +521,4 @@ download[hdfs:///hera/hdfs-upload-dir/hera-20181229-110455.sql hera.sql]
 ## Spark相关
 
 使用Spark需要自行选择Spark版本，并部署在worker上，具体部署方法和示例之后会整理给出。
-"# start" 
+"# start"
