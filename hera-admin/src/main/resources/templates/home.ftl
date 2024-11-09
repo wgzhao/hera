@@ -73,7 +73,7 @@
                                 <h3 id="userNameInfo">
                                 </h3>
                                 <div style="height: 30px"></div>
-                                <h style="font-size: 15px">${dept}</h>
+                                <h style="font-size: 15px">技术部</h>
                             </div>
                             <div class="col-lg-3">
                             </div>
@@ -177,19 +177,6 @@
                                     </div>
                                     <a href="${request.contextPath}/bigdataMetadata/dataDiscovery"
                                        class="small-box-footer">More info <i
-                                                class="fa fa-arrow-circle-right"></i></a>
-                                </div>
-
-                                <div class="small-box bg-yellow-gradient" style="margin-top: 40px">
-                                    <div class="inner">
-                                        <h3 id="nginxCount"></h3>
-                                        <p>埋点服务监控</p>
-                                    </div>
-                                    <div class="icon">
-                                        <#--<i class="iconfont icon-home">&#xe668;</i>-->
-                                        <i class="layui-icon layui-icon-engine" style="font-size: 50px;"></i>
-                                    </div>
-                                    <a href="${request.contextPath}/maxwellInfo" class="small-box-footer">More info <i
                                                 class="fa fa-arrow-circle-right"></i></a>
                                 </div>
                             </div>

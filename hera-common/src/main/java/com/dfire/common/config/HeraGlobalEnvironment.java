@@ -62,26 +62,6 @@ public class HeraGlobalEnvironment {
     @Getter
     private static Integer taskTimeout;
     @Getter
-    private static String sparkBaseDir;
-    @Getter
-    private static String sparkAddress;
-    @Getter
-    private static String sparkDriver;
-    @Getter
-    private static String sparkUser;
-    @Getter
-    private static String sparkPassword;
-    @Getter
-    private static String sparkMaster;
-    @Getter
-    private static String sparkDriverMemory;
-    @Getter
-    private static String sparkDriverCores;
-    @Getter
-    private static String sparkExecutorMemory;
-    @Getter
-    private static String sparkExecutorCores;
-    @Getter
     private static String hdfsUploadPath;
     /**
      * 判断是否是linux 环境，有些命令不一样
@@ -227,53 +207,4 @@ public class HeraGlobalEnvironment {
         HeraGlobalEnvironment.channelTimeout = channelTimeout;
     }
 
-    @Value("${spark.baseDir}")
-    public void setSparkBaseDir(String sparkBaseDir) {
-        HeraGlobalEnvironment.sparkBaseDir = sparkBaseDir;
     }
-
-    @Value("${spark.address}")
-    public void setSparkAddress(String sparkAddress) {
-        HeraGlobalEnvironment.sparkAddress = sparkAddress;
-    }
-
-    @Value("${spark.driver}")
-    public void setSparkDriver(String sparkDriver) {
-        HeraGlobalEnvironment.sparkDriver = sparkDriver;
-    }
-
-    @Value("${spark.username}")
-    public void setSparkUser(String sparkUser) {
-        HeraGlobalEnvironment.sparkUser = sparkUser;
-    }
-
-    @Value("${spark.password}")
-    public void setSparkPassword(String sparkPassword) {
-        HeraGlobalEnvironment.sparkPassword = sparkPassword;
-    }
-
-    @Value("${spark.master}")
-    public void setSparkMaster(String sparkMaster) {
-        HeraGlobalEnvironment.sparkMaster = sparkMaster;
-    }
-
-    @Value("${spark.driver-memory}")
-    public void setSparkDriverMemory(String sparkDriverMemory) {
-        HeraGlobalEnvironment.sparkDriverMemory = sparkDriverMemory;
-    }
-
-    @Value("${spark.driver-cores}")
-    public void setSparkDriverCores(String sparkDriverCores) {
-        HeraGlobalEnvironment.sparkDriverCores = sparkDriverCores;
-    }
-
-    @Value("${spark.executor-memory}")
-    public void setSparkExecutorMemory(String sparkExecutorMemory) {
-        HeraGlobalEnvironment.sparkExecutorMemory = sparkExecutorMemory;
-    }
-
-    @Value("${spark.executor-cores}")
-    public void setSparkExecutorCores(String sparkExecutorCores) {
-        HeraGlobalEnvironment.sparkExecutorCores = sparkExecutorCores;
-    }
-}

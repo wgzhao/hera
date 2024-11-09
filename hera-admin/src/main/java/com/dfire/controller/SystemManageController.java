@@ -72,7 +72,7 @@ public class SystemManageController
     private HeraHostRelationService heraHostRelationService;
     @Autowired
     private WorkClient workClient;
-    @Value("${real_server.hosts}")
+    @Value("${nginx.hosts}")
     private String hosts;
 
     @RequestMapping("/userManage")

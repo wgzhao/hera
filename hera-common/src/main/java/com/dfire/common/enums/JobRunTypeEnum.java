@@ -9,9 +9,7 @@ public enum JobRunTypeEnum {
 
     Shell("shell"),
     Hive("hive"),
-    Spark("spark"),
-    Impala("impala"),
-    Spark2("spark2");
+    Impala("impala");
 
     private final String id;
 

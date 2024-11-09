@@ -2,7 +2,6 @@ package com.dfire.util;
 
 import com.alibaba.fastjson2.JSON;
 import com.alibaba.fastjson2.JSONObject;
-import com.dfire.bean.MaxWellMonitorInfo;
 import lombok.extern.slf4j.Slf4j;
 
 import java.sql.*;

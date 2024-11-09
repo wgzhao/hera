@@ -36,16 +36,17 @@
                     <div class="height-self left-bar" style="overflow: auto;">
                         <div class="box-header left-bar-head">
                             <ul class="nav nav-tabs" role="tablist">
-                                <li role="presentation" class="active" style="background-color: #fff"><a href="#"
-                                                                                                         role="tab"
-                                                                                                         id="myScheBtn">我的调度任务</a>
+                                <li role="presentation" class="active" style="background-color: #fff">
+                                    <a href="#"  role="tab" id="myScheBtn">我的调度任务</a>
                                 </li>
-                                <li role="presentation" style="background-color: #fff"><a href="#" role="tab"
-                                                                                          id="allScheBtn">全部调度任务</a>
+                                <li role="presentation" style="background-color: #fff">
+                                    <a href="#" role="tab" id="allScheBtn">全部调度任务</a>
                                 </li>
-                                <#--<li role="presentation" style="background-color: #fff"><a href="#" role="tab"
-                                                                                          id="wwweee">功能按钮</a>
-                                </li>-->
+                                <li role="presentation" style="background-color: #fff">
+                                    <a href="#" role="tab"  id="wwweee">功能按钮</a>
+                                </li>
+                                <li role="presentation" style="background-color: #fff">
+                                    <a href="#" role="tab" id="new">新增</a>
                             </ul>
                             <div class="box-tools">
                                 <button type="button" class="btn btn-box-tool" id="hideTreeBtn"><i

@@ -66,14 +66,6 @@ public class JobUtils {
                 jobContext.putData(RunningJobKeyConstant.JOB_RUN_TYPE, JobRunTypeEnum.Hive.toString());
                 core = new HiveJob(jobContext);
                 break;
-            case "SPARK":
-                jobContext.putData(RunningJobKeyConstant.JOB_RUN_TYPE, JobRunTypeEnum.Spark.toString());
-                core = new SparkJob(jobContext);
-                break;
-            case "SPARK2":
-                jobContext.putData(RunningJobKeyConstant.JOB_RUN_TYPE, JobRunTypeEnum.Spark2.toString());
-                core = new Spark2Job(jobContext);
-                break;
             case "IMPALA":
                 jobContext.putData(RunningJobKeyConstant.JOB_RUN_TYPE, JobRunTypeEnum.Impala.toString());
                 core = new ImpalaJob(jobContext);
@@ -112,8 +104,7 @@ public class JobUtils {
 
 
         if (jobBean.getHeraJob().getRunType().equals(JobRunTypeEnum.Shell.toString())
-                || jobBean.getHeraJob().getRunType().equals(JobRunTypeEnum.Hive.toString())
-                || jobBean.getHeraJob().getRunType().equals(JobRunTypeEnum.Spark.toString())) {
+                || jobBean.getHeraJob().getRunType().equals(JobRunTypeEnum.Hive.toString())) {
             script = resolveScriptResource(resource, script, workContext);
         }
         jobContext.setResources(resource);
@@ -130,10 +121,6 @@ public class JobUtils {
             core = new HadoopShellJob(jobContext);
         } else if (runType == JobRunTypeEnum.Hive) {
             core = new HiveJob(jobContext);
-        } else if (runType == JobRunTypeEnum.Spark) {
-            core = new SparkJob(jobContext);
-        } else if (runType == JobRunTypeEnum.Spark2) {
-            core = new Spark2Job(jobContext);
         } else if (runType == JobRunTypeEnum.Impala) {
             core = new ImpalaJob(jobContext);
         }

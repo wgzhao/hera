@@ -21,10 +21,6 @@ public abstract class AbstractDataSourcePool {
 
     public AbstractDataSourcePool() {
         dataSource = new DruidDataSource();
-        dataSource.setDriverClassName(HeraGlobalEnvironment.getSparkDriver());
-        dataSource.setUrl(HeraGlobalEnvironment.getSparkAddress());
-        dataSource.setUsername(HeraGlobalEnvironment.getSparkUser());
-        dataSource.setPassword(HeraGlobalEnvironment.getSparkPassword());
         dataSource.setInitialSize(1);
         dataSource.setMaxActive(20);
         dataSource.setMinIdle(1);

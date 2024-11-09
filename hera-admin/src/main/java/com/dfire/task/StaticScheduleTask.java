@@ -62,7 +62,7 @@ public class StaticScheduleTask {
   private HeraJobMonitorService heraJobMonitorService;
   @Autowired
   private HeraUserService heraUserService;
-  @Value("${real_server.hosts}")
+  @Value("${nginx.hosts}")
   private String hosts;
 
   // 3.添加定时任务
