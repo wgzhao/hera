@@ -40,8 +40,6 @@ druid:
     stat-mergeSql: true
     filters: stat,wall,log4j
     connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
-nginx:
-  hosts: 127.0.0.1
 
 clean:
   path: ${server.context-path}

@@ -2,56 +2,35 @@ package com.dfire.util;
 
 import com.dfire.common.config.HeraGlobalEnvironment;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.hadoop.conf.Configuration;
-import org.apache.hadoop.fs.FSDataInputStream;
-import org.apache.hadoop.fs.FileSystem;
-import org.apache.hadoop.fs.Path;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 /**
  * Created by E75 on 2019/10/28.
  */
 @Slf4j
-public class ReadHdfsFile {
-
+public class ReadHdfsFile
+{
     static String hdfsUploadPath = HeraGlobalEnvironment.getHdfsUploadPath();
-    //"hdfs://192.168.153.11:9000"
-    static String Fs = hdfsUploadPath.split("/hera/")[0];
 
-    public static String hdfsCat(String hdfsFilePath) {
-        Configuration conf = new Configuration();
-        conf.set("fs.defaultFS", Fs);
-        conf.setBoolean("fs.hdfs.impl.disable.cache", true);
-        FileSystem fs = null;
-        FSDataInputStream in = null;
-        BufferedReader d = null;
-        StringBuilder sb = new StringBuilder();
+    public static String hdfsCat(String hdfsFilePath)
+    {
         try {
-            fs = FileSystem.get(conf);
-            Path remotePath = new Path(hdfsFilePath);
-            in = fs.open(remotePath);
-            d = new BufferedReader(new InputStreamReader(in));
-            String line;
-            while ((line = d.readLine()) != null) {
-                sb.append(line).append("\n");
-            }
-            d.close();
-            in.close();
-            fs.close();
-        } catch (IOException e) {
-            log.error("读取hdfs文件失败", e);
-        } finally {
-            try {
-                if (d != null) d.close();
-                if (in != null) in.close();
-                if (fs != null) fs.close();
-            } catch (IOException e) {
-                log.error("关闭流失败", e);
-            }
+            String tempFile = Files.createTempFile("/tmp", ".dat").toString();
+            String command = "hdfs dfs -cat " + hdfsUploadPath + "/" + hdfsFilePath + " 2>/dev/null > " + tempFile;
+            Process process = Runtime.getRuntime().exec(command);
+            process.waitFor();
+            // read all output stream into a string
+            return String.join("\n", Files.readAllLines(Paths.get(tempFile)));
         }
-        return sb.toString();
+        catch (IOException e) {
+            log.error("读取hdfs文件失败", e);
+        }
+        catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+        return null;
     }
 }

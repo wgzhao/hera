@@ -71,12 +71,6 @@
             <version>${lang3.version}</version>
         </dependency>
 
-
-        <dependency>
-            <groupId>commons-lang</groupId>
-            <artifactId>commons-lang</artifactId>
-        </dependency>
-
         <dependency>
             <groupId>com.dfire.hera</groupId>
             <artifactId>hera-monitor</artifactId>
@@ -92,7 +86,7 @@
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
-            <version>3.1.0</version>
+            <version>4.0.1</version>
             <scope>provided</scope>
         </dependency>
 

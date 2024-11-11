@@ -2,11 +2,8 @@ package com.dfire.controller;
 
 import com.dfire.bean.AppInfos;
 import com.dfire.bean.ClusterMetrics;
-import com.dfire.bean.MaxWellMonitorInfo;
-import com.dfire.bean.NginxStatus;
 import com.dfire.common.entity.HeraDataDiscoveryNew;
 import com.dfire.common.entity.HeraHostRelation;
-import com.dfire.common.entity.HeraNginxInfo;
 import com.dfire.common.entity.HeraYarnInfoUse;
 import com.dfire.common.entity.model.JsonResponse;
 import com.dfire.common.entity.model.TableResponse;
@@ -18,7 +15,6 @@ import com.dfire.common.service.HeraDataDiscoveryService;
 import com.dfire.common.service.HeraHostRelationService;
 import com.dfire.common.service.HeraJobActionService;
 import com.dfire.common.service.HeraJobService;
-import com.dfire.common.service.HeraNginxInfoService;
 import com.dfire.common.service.HeraYarnInfoUseService;
 import com.dfire.common.util.HeraDateTool;
 import com.dfire.common.vo.UserJobInfo;
@@ -28,8 +24,6 @@ import com.dfire.common.logs.ErrorLog;
 import com.dfire.monitor.service.JobManageService;
 import com.dfire.util.AppInfoDateUtil;
 import com.dfire.util.HtmlUnitCommon;
-import com.dfire.util.MaxWellForInfoUtil;
-import com.dfire.util.NginxStatusUntil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -60,8 +54,6 @@ public class SystemManageController
     HeraYarnInfoUseService heraYarnInfoUseService;
     @Autowired
     HeraJobService heraJobService;
-    @Autowired
-    HeraNginxInfoService heraNginxInfoService;
     @Autowired
     HeraDataDiscoveryNewService heraDataDiscoveryNewService;
     @Autowired
@@ -238,23 +230,6 @@ public class SystemManageController
         return new JsonResponse(true, "成功", heraYarnInfoUses);
     }
 
-    @RequestMapping(value = "/offlineTaskMonitoring/selectHeraNginxInfoList", method = RequestMethod.GET)
-    @ResponseBody
-    public JsonResponse selectHeraNginxInfo(HeraNginxInfo heraNginxInfo)
-    {
-        /**
-         　　* @Description: TODO 获取时间点监控数据
-         　　* @param []
-         　　* @return com.dfire.common.entity.model.TableResponse<java.util.List<com.dfire.common.entity.HeraHostRelation>>
-         　　* @throws
-         　　* @author lenovo
-         　　* @date 2019/7/31 14:02
-         　　*/
-
-        List<HeraNginxInfo> heraNginxInfos = heraNginxInfoService.selectHeraNginxInfoList(heraNginxInfo);
-        return new JsonResponse(true, "成功", heraNginxInfos);
-    }
-
     @RequestMapping(value = "/offlineTaskMonitoring/taskInfo", method = RequestMethod.GET)
     @ResponseBody
     public TableResponse<List<AppInfos>> offlineTaskMonitoringTaskInfoNew(@RequestParam("taskSv") String taskSv
@@ -352,40 +327,6 @@ public class SystemManageController
             List<AppInfos> list = new ArrayList<>();
             return new TableResponse<>(list.size(), 0, list);
         }
-    }
-
-    @RequestMapping(value = "/selectMaxWellMonitorInfo", method = RequestMethod.GET)
-    @ResponseBody
-    public TableResponse<List<MaxWellMonitorInfo>> selectMaxWellMonitorInfo()
-    {
-        /**
-         　　* @Description: TODO 查询maxwell相关信息
-         　　* @param []
-         　　* @return com.dfire.common.entity.model.TableResponse<java.util.List<com.dfire.bean.MaxWellMonitorInfo>>
-         　　* @throws
-         　　* @author lenovo
-         　　* @date 2019/10/24 14:38
-         　　*/
-        List<MaxWellMonitorInfo> list = new ArrayList<>();
-        MaxWellMonitorInfo info = MaxWellForInfoUtil.getInfo();
-        list.add(info);
-        return new TableResponse<List<MaxWellMonitorInfo>>(list.size(), 0, list);
-    }
-
-    /**
-     * 　　* @Description: TODO 查询nginx相关信息
-     * 　　* @param []
-     * 　　* @return com.dfire.common.entity.model.TableResponse<java.util.List<com.dfire.bean.NginxStatus>>
-     * 　　* @throws
-     * 　　* @author lenovo
-     * 　　* @date 2019/12/25 16:50
-     */
-    @RequestMapping(value = "/selectNginxStatus", method = RequestMethod.GET)
-    @ResponseBody
-    public TableResponse<List<NginxStatus>> selectNginxStatus()
-    {
-        List<NginxStatus> nginxStatus = NginxStatusUntil.getNginxStatus(hosts);
-        return new TableResponse<>(nginxStatus.size(), 0, nginxStatus);
     }
 
     @RequestMapping(value = "/workManage/add", method = RequestMethod.POST)
@@ -617,22 +558,6 @@ public class SystemManageController
         userJobInfo.setFailedJobCount(integer2);
         userJobInfo.setJobStartCount(integer3);
         return new JsonResponse(true, "查询成功", userJobInfo);
-    }
-
-    @RequestMapping(value = "/homePage/getMaxwellCount", method = RequestMethod.GET)
-    @ResponseBody
-    public int getMaxwellCount()
-    {
-        return MaxWellForInfoUtil.getMaxWellCount();
-    }
-
-    @RequestMapping(value = "/homePage/getNginxActiveCount", method = RequestMethod.GET)
-    @ResponseBody
-    public String getNginxActiveCount()
-    {
-        List<NginxStatus> nginxStatus = NginxStatusUntil.getNginxStatus(hosts);
-        int allActiveConnection = nginxStatus.stream().mapToInt(status -> Integer.parseInt(status.getActiveConnections())).sum();
-        return allActiveConnection + "";
     }
 
     @RequestMapping(value = "/isAdmin", method = RequestMethod.GET)

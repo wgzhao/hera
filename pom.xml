@@ -31,10 +31,10 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <netty.version>4.1.112.Final</netty.version>
-        <druid.version>1.0.14</druid.version>
+        <druid.version>1.2.23</druid.version>
         <mysql.version>8.0.28</mysql.version>
         <fastjson2.version>2.0.53</fastjson2.version>
-        <guava.version>23.0</guava.version>
+        <guava.version>33.0.0-jre</guava.version>
         <projectlombok.version>1.18.2</projectlombok.version>
         <!--    <projectlombok.version>1.18.10</projectlombok.version>-->
         <junit.version>4.12</junit.version>
@@ -45,7 +45,7 @@
         <springboot.version>2.7.18</springboot.version>
         <mybatis-spring-boot.version>1.1.1</mybatis-spring-boot.version>
         <redisson.version>3.3.2</redisson.version>
-        <commons.lang.version>2.6</commons.lang.version>
+        <commons.lang3.version>3.17.0</commons.lang3.version>
         <velocity.version>1.5</velocity.version>
         <jdk.version>1.8</jdk.version>
         <quartz.version>2.2.1</quartz.version>
@@ -185,9 +185,9 @@
 
 
             <dependency>
-                <groupId>commons-lang</groupId>
-                <artifactId>commons-lang</artifactId>
-                <version>${commons.lang.version}</version>
+                <groupId>org.apache.commons</groupId>
+                <artifactId>commons-lang3</artifactId>
+                <version>${commons.lang3.version}</version>
             </dependency>
 
             <dependency>
