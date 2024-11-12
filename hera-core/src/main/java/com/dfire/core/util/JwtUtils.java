@@ -97,6 +97,11 @@ public class JwtUtils {
     }
 
     public static String getTokenFromHeader(String tokenName, HttpServletRequest request) {
-        return request.getHeader(tokenName);
+        String auth = request.getHeader("Authorization");
+        if (auth.startsWith("Bearer ")) {
+            return auth.substring(7);
+        } else {
+            return request.getHeader(tokenName);
+        }
     }
 }
