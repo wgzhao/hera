@@ -25,7 +25,7 @@ public class WebSecurityConfig extends WebMvcConfigurerAdapter {
 
     public final static String SESSION_USERNAME = "username";
     public final static String SESSION_USER_ID = "userId";
-    public final static String TOKEN_NAME = "HERA_Token";
+    public final static String TOKEN_NAME = "accessToken";
 
     @Bean
     public SecurityInterceptor getSecurityInterceptor() {
@@ -35,7 +35,7 @@ public class WebSecurityConfig extends WebMvcConfigurerAdapter {
     @Override
     public void addInterceptors(InterceptorRegistry interceptorRegistry) {
         InterceptorRegistration addRegistry = interceptorRegistry.addInterceptor(getSecurityInterceptor());
-        addRegistry.excludePathPatterns("/error").excludePathPatterns("/login**");
+        addRegistry.excludePathPatterns("/error").excludePathPatterns("/login**").excludePathPatterns("/auth/**");
     }
 
 
@@ -61,7 +61,7 @@ public class WebSecurityConfig extends WebMvcConfigurerAdapter {
                 return true;
             }
 
-            String heraToken = JwtUtils.getValFromCookies(TOKEN_NAME, request);
+            String heraToken = JwtUtils.getTokenFromHeader(TOKEN_NAME, request);
             if (StringUtils.isNotBlank(heraToken) && JwtUtils.verifyToken(heraToken)) {
                 return true;
             }

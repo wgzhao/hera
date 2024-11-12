@@ -95,4 +95,8 @@ public class JwtUtils {
         }
         return null;
     }
+
+    public static String getTokenFromHeader(String tokenName, HttpServletRequest request) {
+        return request.getHeader(tokenName);
+    }
 }

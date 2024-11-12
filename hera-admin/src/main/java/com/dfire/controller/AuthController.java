@@ -6,6 +6,7 @@ import com.dfire.common.entity.vo.BaseRestVo;
 import com.dfire.common.util.StringUtil;
 import com.dfire.common.service.HeraUserService;
 import com.dfire.core.util.JwtUtils;
+import lombok.Getter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,17 +25,26 @@ public class AuthController
 {
     @Autowired private HeraUserService heraUserService;
 
-    @PostMapping("/login")
-    public BaseRestVo login(@RequestBody String username, @RequestBody String password)
+    @Getter
+    public static class UserAuth
     {
-        HeraUser user = heraUserService.findByName(username);
+        public String username;
+        public String password;
+    }
+
+    @PostMapping(value = "/login")
+    public BaseRestVo login(@RequestBody UserAuth userAuth)
+    {
+        String username = userAuth.getUsername();
+        String password = userAuth.getPassword();
+        HeraUser user = heraUserService.findByName(userAuth.getUsername());
 
         if (user == null) {
             return new BaseRestVo(false, "用户不存在", 400, null);
         }
         String pwd = user.getPassword();
-        if (! password.isEmpty()) {
-            password = StringUtil.EncoderByMd5(password);
+        if (!password.isEmpty()) {
+            password = StringUtil.EncoderByMd5(userAuth.getPassword());
             if (pwd.equals(password)) {
                 if (user.getIsEffective() == 0) {
                     return new BaseRestVo(false, "审核未通过,请联系管理员", 400, null);
