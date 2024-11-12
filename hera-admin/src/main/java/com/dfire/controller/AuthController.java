@@ -50,7 +50,9 @@ public class AuthController
                     return new BaseRestVo(false, "审核未通过,请联系管理员", 400, null);
                 }
                 Map<String, Object> userInfo = new HashMap<>();
-                userInfo.put("accessToken", JwtUtils.createToken(username, String.valueOf(user.getId())));
+                String token = JwtUtils.createToken(username, String.valueOf(user.getId()));
+                userInfo.put("accessToken", token);
+                userInfo.put("refreshToken", token);
                 // the token expires will 5 days, set the expires datetime to the cookie
                 // the datetime format is 'yyyy/MM/dd HH:mm:ss'
                 Timestamp ts = new Timestamp(System.currentTimeMillis() + Constants.JWT_TIME_OUT * 1000L);
@@ -69,5 +71,22 @@ public class AuthController
             }
         }
         return new BaseRestVo(false, "请输入密码", 400, null);
+    }
+
+    @PostMapping("/refresh-token")
+    public BaseRestVo refreshToken(@RequestBody Map<String, String> params)
+    {
+        String token = params.get("refreshToken");
+        if (JwtUtils.verifyToken(token)) {
+            Map<String, Object> userInfo = new HashMap<>();
+            userInfo.put("accessToken", token);
+            userInfo.put("refreshToken", token);
+            Timestamp ts = new Timestamp(System.currentTimeMillis() + Constants.JWT_TIME_OUT * 1000L);
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm:ss");
+            String expires = sdf.format(ts);
+            userInfo.put("expires", expires);
+            return new BaseRestVo(true, "刷新成功", 200, userInfo);
+        }
+        return new BaseRestVo(false, "刷新失败", 400, null);
     }
 }
