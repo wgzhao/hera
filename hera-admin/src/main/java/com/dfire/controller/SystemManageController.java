@@ -64,8 +64,6 @@ public class SystemManageController
     private HeraHostRelationService heraHostRelationService;
     @Autowired
     private WorkClient workClient;
-    @Value("${nginx.hosts}")
-    private String hosts;
 
     @RequestMapping("/userManage")
     public String userManage()

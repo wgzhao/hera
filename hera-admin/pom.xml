@@ -36,6 +36,12 @@
         </dependency>
 
         <dependency>
+            <groupId>com.dfire.hera</groupId>
+            <artifactId>hera-common</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head lang="en">
-    <title>盈亚科技任务调度平台</title>
+    <title>任务调度平台</title>
     <base href="${request.contextPath}" id="baseURl">
     <#import "/common/common.macro.ftl" as netCommon>
     <@netCommon.commonStyle />
@@ -27,7 +27,7 @@
 
 <div class="login box box-primary">
     <#--<div class="box png">-->
-    <div><h3 align="center" class="title">盈亚科技任务调度平台</h3></div>
+    <div><h3 align="center" class="title">任务调度平台</h3></div>
     <div class="input">
         <div class="log">
             <ul class="nav nav-tabs" role="tablist" id="menu-tab">
