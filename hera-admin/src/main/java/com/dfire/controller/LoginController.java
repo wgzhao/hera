@@ -31,31 +31,6 @@ public class LoginController {
     @Autowired
     private HeraUserService heraUserService;
 
-    @RequestMapping("/101")
-    public String test11() {
-        return "101";
-    }
-
-    @RequestMapping("/1")
-    public String test2() {
-        return "1";
-    }
-
-    @RequestMapping("/2")
-    public String r2() {
-        return "2";
-    }
-
-    @RequestMapping("/22")
-    public String r22() {
-        return "22";
-    }
-
-    @RequestMapping("/test")
-    public String test3() {
-        return "test";
-    }
-
     @RequestMapping("/datalinkMintor")
     public String datalinkMintor() {
         return "datalinkMintor";
