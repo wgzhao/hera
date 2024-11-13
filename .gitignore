@@ -35,3 +35,4 @@ Thumbs.db
 # other edit
 *.vscode
 start.sh
+/.env
